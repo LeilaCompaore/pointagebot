@@ -30,17 +30,17 @@ app.post('/webhook/', function (req, res) {
   var data = req.body;
 
   // if( data.object === 'page' ){
-    for(var i = 0; i<data.entry.length; i++) {
-      var eventTime = data.entry[i].time;
+    // for(var i = 0; i<data.entry.length; i++) {
+      var eventTime = data.entry[0].time;
 
-      for (var j = 0; j<data.entry[i].messaging.length; j++) {
+      for (var j = 0; j<data.entry[0].messaging.length; j++) {
         if (data.entry[i].messaging[j].message) {
-          replyfunction(data.entry[i].messaging[j]);
+          replyfunction(data.entry[0].messaging[j]);
         } else {
-          console.log("Webhook received unknown event: ", data.entry[i]);
+          console.log("Webhook received unknown event: ", data.entry[0]);
         }
       }
-    }
+    // }
   // }
 });
 
