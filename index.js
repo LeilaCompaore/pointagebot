@@ -27,10 +27,10 @@ app.post('/webhook', function (req, res) {
   var data = req.body;
 
   if( data.object === 'page' ){
-    for(int i = 0; i<data.entry.length; i++) {
+    for(var i = 0; i<data.entry.length; i++) {
       var eventTime = data.entry[i].time;
 
-      for (int j = 0; j<data.entry[i].messaging.length; j++) {
+      for (var j = 0; j<data.entry[i].messaging.length; j++) {
         if (data.entry[i].messaging[j].message) {
           replyfunction(data.entry[i].messaging[j]);
         } else {
@@ -44,14 +44,14 @@ app.post('/webhook', function (req, res) {
 
 function replyfunction (event){
 
-  let message = { text:"echoing: "+event.message }
+  let messageecho = { text:"echoing: "+event.message }
       request({
           url: 'https://graph.facebook.com/v2.6/me/messages',
           qs: {access_token:pageToken},
           method: 'POST',
           json: {
               recipient: {id:event.sender.id},
-              message: message,
+              message: messageecho,
           }
       }, function(error, response, body) {
           if (error) {
