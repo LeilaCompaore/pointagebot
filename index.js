@@ -26,7 +26,7 @@ app.get('/webhook', function(req, res) {
 app.post('/webhook', function (req, res) {
   var data = req.body;
 
-  if( data.object === 'page' ){
+  // if( data.object === 'page' ){
     for(var i = 0; i<data.entry.length; i++) {
       var eventTime = data.entry[i].time;
 
@@ -38,7 +38,7 @@ app.post('/webhook', function (req, res) {
         }
       }
     }
-  }
+  // }
 });
 
 
