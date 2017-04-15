@@ -48,7 +48,7 @@ app.post('/webhook/', function (req, res) {
 
 function replyfunction (event){
 
-  let messageecho = { text:"echoing: "+ event.message.text }
+  let messageecho = { text:"echo this: "+ event.message.text }
       request({
           url: 'https://graph.facebook.com/v2.6/me/messages',
           qs: {access_token:pageToken},
