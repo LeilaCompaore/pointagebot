@@ -37,7 +37,7 @@ app.post('/webhook/', function (req, res) {
         if (data.entry[i].messaging[j].message) {
           replyfunction(data.entry[i].messaging[j]);
         } else {
-          console.log("Webhook received unknown event: ", data.entry[i].messaging[j]);
+          console.log("Webhook received unknown event: ", data.entry[i]);
         }
       }
     }
@@ -47,7 +47,7 @@ app.post('/webhook/', function (req, res) {
 
 function replyfunction (event){
 
-  let messageecho = { text:"echoing: "+event.message }
+  let messageecho = { text:"echoing: "+ event.message.text }
       request({
           url: 'https://graph.facebook.com/v2.6/me/messages',
           qs: {access_token:pageToken},
