@@ -35,10 +35,10 @@ app.post('/webhook/', function (req, res) {
       // var eventTime = data.entry[0].time;
 
       // for (var j = 0; j < event.length; j++) {
-        if (event[j].message) {
-          replyfunction(event[j]);
+        if (event[0].message) {
+          replyfunction(event[0]);
         } else {
-          console.log("Webhook received unknown event: ", event[j]);
+          console.log("Webhook received unknown event: ", event[0]);
         }
       // }
     // }
