@@ -35,7 +35,7 @@ app.post('/webhook/', function (req, res) {
       // var eventTime = data.entry[0].time;
 
       // for (var j = 0; j < event.length; j++) {
-        if (event[0].message) {
+        if (event[0].message && event[0].message.text) {
           replyfunction(event[0]);
         } else {
           console.log("Webhook received unknown event: ", event[0]);
