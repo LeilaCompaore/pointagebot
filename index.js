@@ -34,13 +34,13 @@ app.post('/webhook/', function (req, res) {
     var event = data.entry[0].messaging
       // var eventTime = data.entry[0].time;
 
-      for (var j = 0; j < event.length; j++) {
+      // for (var j = 0; j < event.length; j++) {
         if (event[j].message) {
           replyfunction(event[j]);
         } else {
           console.log("Webhook received unknown event: ", event[j]);
         }
-      }
+      // }
     // }
   }
 });
