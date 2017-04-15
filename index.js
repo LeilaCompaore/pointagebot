@@ -29,32 +29,33 @@ app.get('/webhook/', function(req, res) {
 app.post('/webhook/', function (req, res) {
   var data = req.body;
 
-  if( data.object === 'page' ){
+  // if( data.object === 'page' ){
     // for(var i = 0; i<data.entry.length; i++) {
     var event = data.entry[0].messaging
       // var eventTime = data.entry[0].time;
 
       // for (var j = 0; j < event.length; j++) {
+      senderID = event.sender.id;
         if (event[0].message && event[0].message.text) {
-          replyfunction(event[0]);
+          replyfunction(event[0],"echo this: "+ event.message.text);
         } else {
           console.log("Webhook received unknown event: ", event[0]);
         }
       // }
     // }
-  }
+  // }
 });
 
 
-function replyfunction (event){
+function replyfunction (senderID, text){
 
-  let messageecho = { text:"echo this: "+ event.message.text }
+  let messageecho = { text:text }
       request({
           url: 'https://graph.facebook.com/v2.6/me/messages',
           qs: {access_token:pageToken},
           method: 'POST',
           json: {
-              recipient: {id:event.sender.id},
+              recipient: {id:senderID},
               message: messageecho,
           }
       }, function(error, response, body) {
