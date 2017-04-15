@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
 })
 
 //MESSENGER PAGE TOKEN VERIFICATION
-app.get('/webhook', function(req, res) {
+app.get('/webhook/', function(req, res) {
   if (req.query['hub.verify_token'] === 'PRINCESSE_YENNENGA') {
     res.send(req.query['hub.challenge']);
   } else {
@@ -23,7 +23,7 @@ app.get('/webhook', function(req, res) {
 });
 
 
-app.post('/webhook', function (req, res) {
+app.post('/webhook/', function (req, res) {
   var data = req.body;
 
   // if( data.object === 'page' ){
