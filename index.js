@@ -5,6 +5,10 @@ const app = express();
 const pageToken = "EAAbCIOVgkUQBAFozVNwThYJAqtNC4dUyO8B6EiOyYrFAdJGl5oyPzvfXWEvzLtqNKm8ZAaOAYZBjfE6zXSeZBUVyKyKC0BgwZCOtit1UZAQD5EyPcrA4n8SZB7HSCSlqZAufPyyTPfkw0bhmUZBGJ2itHzkTw4V3282oaDHfDETZCgjXjNfhMZAXcF";
 
 app.set('port', process.env.PORT || 5000)
+app.listen(app.get('port'), function() {
+  console.log("sooo, we're listening fam, check port: "+app.get('port'));
+});
+
 app.get('/', function(req, res) {
   res.send('allo le monde');
 })
@@ -57,7 +61,3 @@ replyfunction (event){
           }
       })
 }
-
-app.listen(app.get('port'), function() {
-  console.log("sooo, we're listening fam, check port: "+app.get('port'));
-});
