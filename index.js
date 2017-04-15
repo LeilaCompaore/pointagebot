@@ -12,52 +12,52 @@ app.listen(app.get('port'), function() {
 app.get('/', function(req, res) {
   res.send('allo le monde');
 })
-//
-// //MESSENGER PAGE TOKEN VERIFICATION
-// app.get('/webhook', function(req, res) {
-//   if (req.query['hub.verify_token'] === 'PRINCESSE_YENNENGA') {
-//     res.send(req.query['hub.challenge']);
-//   } else {
-//     res.send('are you trynna fool me?? Your token is not working')
-//   }
-// });
-//
-//
-// app.post('/webhook', function (req, res) {
-//   var data = req.body;
-//
-//   if( data.object === 'page' ){
-//     for(int i = 0; i<data.entry.length; i++) {
-//       var eventTime = data.entry[i].time;
-//
-//       for (int j = 0; j<data.entry[i].messaging.length; j++) {
-//         if (data.entry[i].messaging[j].message) {
-//           replyfunction(data.entry[i].messaging[j]);
-//         } else {
-//           console.log("Webhook received unknown event: ", event);
-//         }
-//       }
-//     }
-//   }
-// });
-//
-//
-// replyfunction (event){
-//
-//   let message = { text:"echoing: "+event.message }
-//       request({
-//           url: 'https://graph.facebook.com/v2.6/me/messages',
-//           qs: {access_token:pageToken},
-//           method: 'POST',
-//           json: {
-//               recipient: {id:event.sender.id},
-//               message: message,
-//           }
-//       }, function(error, response, body) {
-//           if (error) {
-//               console.log('Error sending messages: ', error)
-//           } else if (response.body.error) {
-//               console.log('Error: ', response.body.error)
-//           }
-//       })
-// }
+
+//MESSENGER PAGE TOKEN VERIFICATION
+app.get('/webhook', function(req, res) {
+  if (req.query['hub.verify_token'] === 'PRINCESSE_YENNENGA') {
+    res.send(req.query['hub.challenge']);
+  } else {
+    res.send('are you trynna fool me?? Your token is not working')
+  }
+});
+
+
+app.post('/webhook', function (req, res) {
+  var data = req.body;
+
+  if( data.object === 'page' ){
+    for(int i = 0; i<data.entry.length; i++) {
+      var eventTime = data.entry[i].time;
+
+      for (int j = 0; j<data.entry[i].messaging.length; j++) {
+        if (data.entry[i].messaging[j].message) {
+          replyfunction(data.entry[i].messaging[j]);
+        } else {
+          console.log("Webhook received unknown event: ", event);
+        }
+      }
+    }
+  }
+});
+
+
+function replyfunction (event){
+
+  let message = { text:"echoing: "+event.message }
+      request({
+          url: 'https://graph.facebook.com/v2.6/me/messages',
+          qs: {access_token:pageToken},
+          method: 'POST',
+          json: {
+              recipient: {id:event.sender.id},
+              message: message,
+          }
+      }, function(error, response, body) {
+          if (error) {
+              console.log('Error sending messages: ', error)
+          } else if (response.body.error) {
+              console.log('Error: ', response.body.error)
+          }
+      })
+}
