@@ -53,8 +53,8 @@ app.post('/webhook/', function (req, res) {
         console.log("out of the switch");
 
       } else if (event.message && event.message.attachments[0].type === 'location') {
-        replyfunction(senderID,"echo longitude: "+ event.message.attachments[0].payload.coordinates.long
-        +"latitude: "+ event.message.attachments[0].payload.coordinates.lat);
+        var city = findcitybycoords(event.message.attachments[0].payload.coordinates);
+        replyfunction(senderID,"so you're from "+city);
       } else {
         console.log("AAA");
         console.log("Webhook received unknown event: ", event);
@@ -115,4 +115,8 @@ function punch (senderID, text) {
         console.log('Error: ', res.body.error)
     }
   })
+}
+
+function findcitybycoords (coords) {
+  return cities.gps_lookup(coords.lat,coords.long);
 }
