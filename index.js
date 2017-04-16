@@ -118,5 +118,5 @@ function punch (senderID, text) {
 }
 
 function findcitybycoords (coords) {
-  return cities.gps_lookup(coords.lat,coords.long);
+  return cities.gps_lookup(coords.lat,coords.long).city;
 }
