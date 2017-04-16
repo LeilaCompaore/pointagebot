@@ -35,8 +35,6 @@ app.post('/webhook/', function (req, res) {
       console.log("right in the if");
 
       switch (event.message.text) {
-        console.log("in the switch");
-
         //punch in
         case 'pin':
           punch(senderID, 'punchin');
