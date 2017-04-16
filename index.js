@@ -27,23 +27,17 @@ app.get('/webhook/', function(req, res) {
 
 
 app.post('/webhook/', function (req, res) {
-  var data = req.body;
 
-  // if( data.object === 'page' ){
-    // for(var i = 0; i<data.entry.length; i++) {
-    var event = data.entry[0].messaging
-      // var eventTime = data.entry[0].time;
-
-      // for (var j = 0; j < event.length; j++) {
-      senderID = data.entry[0].sender.id;
-        if (event[0].message && event[0].message.text) {
-          replyfunction(event[0],"echo this: "+ event.message.text);
+    var event = req.body.entry[0].messaging[0]
+    var senderID = event.sender.id;
+        if (event.message && event.message.text) {
+          replyfunction(senderID,"tu as dit: "+ event.message.text);
         } else {
-          console.log("Webhook received unknown event: ", event[0]);
+          console.log("AAA");
+          console.log("Webhook received unknown event: ", event);
+          console.log("BBB");
         }
-      // }
-    // }
-  // }
+
 });
 
 
