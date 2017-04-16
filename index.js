@@ -37,6 +37,8 @@ app.post('/webhook/', function (req, res) {
           console.log("Webhook received unknown event: ", event);
           console.log("BBB");
         }
+
+        //the following will mess up with your brain for hours if missing
         res.sendStatus(200)
 
 });
