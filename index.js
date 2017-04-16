@@ -52,8 +52,8 @@ app.post('/webhook/', function (req, res) {
 
         console.log("out of the switch");
 
-      } else if (event.message && event.message.attachments.type === 'location') {
-        replyfunction(senderID,"echo longitude: "+ event.message.attachments.payload.coordinates.long
+      } else if (event.message && event.message.attachments[0].type === 'location') {
+        replyfunction(senderID,"echo longitude: "+ event.message.attachments[0].payload.coordinates.long
         +"latitude: "+ event.message.attachments[0].payload.coordinates.lat);
       } else {
         console.log("AAA");
