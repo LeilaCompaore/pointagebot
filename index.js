@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const NodeGeocoder = require('node-geocoder');
 const cities = require('cities');
 
 const app = express();
 
 
+var geocoder = NodeGeocoder({provider: 'google'});
 
 const pageToken = "EAAbCIOVgkUQBAFozVNwThYJAqtNC4dUyO8B6EiOyYrFAdJGl5oyPzvfXWEvzLtqNKm8ZAaOAYZBjfE6zXSeZBUVyKyKC0BgwZCOtit1UZAQD5EyPcrA4n8SZB7HSCSlqZAufPyyTPfkw0bhmUZBGJ2itHzkTw4V3282oaDHfDETZCgjXjNfhMZAXcF";
 
