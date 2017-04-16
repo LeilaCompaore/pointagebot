@@ -31,7 +31,7 @@ app.post('/webhook/', function (req, res) {
     var event = req.body.entry[0].messaging[0]
     var senderID = event.sender.id;
         if (event.message && event.message.text) {
-          replyfunction(senderID,"tu as dit: "+ event.message.text);
+          replyfunction(senderID,"you: "+ event.message.text);
         } else {
           console.log("AAA");
           console.log("Webhook received unknown event: ", event);
