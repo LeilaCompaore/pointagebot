@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const cities = require('cities');
+
 const app = express();
+
 
 
 const pageToken = "EAAbCIOVgkUQBAFozVNwThYJAqtNC4dUyO8B6EiOyYrFAdJGl5oyPzvfXWEvzLtqNKm8ZAaOAYZBjfE6zXSeZBUVyKyKC0BgwZCOtit1UZAQD5EyPcrA4n8SZB7HSCSlqZAufPyyTPfkw0bhmUZBGJ2itHzkTw4V3282oaDHfDETZCgjXjNfhMZAXcF";
@@ -49,6 +52,9 @@ app.post('/webhook/', function (req, res) {
 
         console.log("out of the switch");
 
+      } else if (event.message && event.message.attachments.type === 'location') {
+        replyfunction(senderID,"echo longitude: "+ event.message.attachments.payload.coordinates.long
+        +"latitude: "+ event.message.attachments.payload.coordinates.lat);
       } else {
         console.log("AAA");
         console.log("Webhook received unknown event: ", event);
