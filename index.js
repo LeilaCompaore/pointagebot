@@ -36,11 +36,11 @@ app.post('/webhook/', function (req, res) {
 
       switch (event.message.text) {
         //punch in
-        case 'pin':
+        case 'Pin':
           punch(senderID, 'punchin');
           break;
         //punch out
-        case 'pout':
+        case 'Pout':
             punch(senderID, 'punchout');
             break;
         default:
@@ -105,8 +105,8 @@ function punch (senderID, text) {
   }, function (err, res, body) {
     if(err) {
       console.log('Error sending messages (punch()): ', err)
-    } else if (response.body.error) {
-        console.log('Error: ', response.body.error)
+    } else if (res.body.error) {
+        console.log('Error: ', res.body.error)
     }
   })
 }
