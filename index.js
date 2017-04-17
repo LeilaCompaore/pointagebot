@@ -62,7 +62,7 @@ app.post('/webhook/', function (req, res) {
           latlon: [event.message.attachments[0].payload.coordinates.lat,
           event.message.attachments[0].payload.coordinates.long]
         }).then (function(res){
-          console.log(res);
+          console.log(res.json.results);
         }).catch(function(err){
           console.log(err);
         })
