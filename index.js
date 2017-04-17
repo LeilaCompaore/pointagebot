@@ -37,7 +37,7 @@ app.get('/webhook/', function(req, res) {
 app.post('/webhook/', function (req, res) {
 
   var event = req.body.entry[0].messaging[0]
-  var senderID = event.sender.id;
+  const senderID = event.sender.id;
   console.log("at the door of the if");
     if (event.message && event.message.text) {
       console.log("right in the if");
