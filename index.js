@@ -5,7 +5,8 @@ const cities = require('cities');
 const GoogleMapsAPI = "AIzaSyCOghCc3sEO8eanXa-fg673EmNnhikuiIs";
 
 const googleMapsClient = require('@google/maps').createClient({
-  key: GoogleMapsAPI
+  key: GoogleMapsAPI,
+  promise: require('q').Promise
 });
 
 const app = express();
@@ -61,9 +62,11 @@ app.post('/webhook/', function (req, res) {
         googleMapsClient.reverseGeocode({
           latlng: [event.message.attachments[0].payload.coordinates.lat,
           event.message.attachments[0].payload.coordinates.long]
-        }).then (function(res){
+        }).asPromise()
+        .then (function(res){
           console.log(res.json.results);
-        }).catch(function(err){
+        })
+        .catch(function(err){
           console.log(err);
         });
 
