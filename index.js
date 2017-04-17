@@ -65,6 +65,7 @@ app.post('/webhook/', function (req, res) {
         }).asPromise()
         .then (function(res){
           console.log(res.json.results);
+          replyfunction(senderID,"so you're from "+res.json.results.address_components[3].long_name);
         })
         .catch(function(err){
           console.log(err);
