@@ -6,7 +6,7 @@ const GoogleMapsAPI = "AIzaSyCOghCc3sEO8eanXa-fg673EmNnhikuiIs";
 
 const googleMapsClient = require('@google/maps').createClient({
   key: GoogleMapsAPI,
-  Promise: require('q').Promise
+  Promise: Promise
 });
 
 const app = express();
