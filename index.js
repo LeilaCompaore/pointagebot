@@ -59,13 +59,13 @@ app.post('/webhook/', function (req, res) {
       } else if (event.message && event.message.attachments[0].type === 'location') {
         // var city = findcitybycoords(event.message.attachments[0].payload.coordinates);
         googleMapsClient.reverseGeocode({
-          latlon: [event.message.attachments[0].payload.coordinates.lat,
+          latlng: [event.message.attachments[0].payload.coordinates.lat,
           event.message.attachments[0].payload.coordinates.long]
         }).then (function(res){
           console.log(res.json.results);
         }).catch(function(err){
           console.log(err);
-        })
+        });
 
         replyfunction(senderID,"so you're from ...");
 
