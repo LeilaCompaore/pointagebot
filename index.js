@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
           event.message.attachments[0].payload.coordinates.long]
         }).asPromise()
         .then (function(res){
-          console.log(res.json.results.formatted_address);
+          console.log(res.json.results);
         })
         .catch(function(err){
           console.log(err);
