@@ -2,9 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const cities = require('cities');
+const GoogleMapsAPI = "AIzaSyCOghCc3sEO8eanXa-fg673EmNnhikuiIs";
+
+const googleMapsClient = require('@google/maps').createClient({
+  key: GoogleMapsAPI
+});
 
 const app = express();
-
 
 
 const pageToken = "EAAbCIOVgkUQBAFozVNwThYJAqtNC4dUyO8B6EiOyYrFAdJGl5oyPzvfXWEvzLtqNKm8ZAaOAYZBjfE6zXSeZBUVyKyKC0BgwZCOtit1UZAQD5EyPcrA4n8SZB7HSCSlqZAufPyyTPfkw0bhmUZBGJ2itHzkTw4V3282oaDHfDETZCgjXjNfhMZAXcF";
@@ -54,6 +58,15 @@ app.post('/webhook/', function (req, res) {
 
       } else if (event.message && event.message.attachments[0].type === 'location') {
         // var city = findcitybycoords(event.message.attachments[0].payload.coordinates);
+        googleMapsClient.reverseGeocode({
+          latlon: [event.message.attachments[0].payload.coordinates.lat,
+          event.message.attachments[0].payload.coordinates.long]
+        }).then (function(res){
+          console.log(res);
+        }).catch(function(err){
+          console.log(err);
+        })
+
         replyfunction(senderID,"so you're from ...");
 
       } else {
